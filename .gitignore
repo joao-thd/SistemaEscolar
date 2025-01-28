@@ -1,0 +1,54 @@
+## ASP.NET Core
+# User-specific files
+.idea/
+.vs/
+.vscode/
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer packages
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+*.dmp
+# Folders for build outputs
+bin/
+obj/
+
+# ASP.NET Core
+project.lock.json
+project.fragment.lock.json
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Azure Web App publish settings
+PublishProfiles/
+
+# VS for Mac config folder
+.vscode/
+
+# .NET Core
+# ASP.NET Core runtime config files
+appsettings.json
+appsettings.Development.json
+
+# JetBrains Rider
+.idea/
+
+# Visual Studio for Mac config folder
+.vscode/

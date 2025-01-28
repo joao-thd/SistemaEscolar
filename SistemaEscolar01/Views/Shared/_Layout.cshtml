@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SistemaEscolar01</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SistemaEscolar01.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+
+    <!-- Navbar específica para Aluno e Professor -->
+    @if (ViewData["IsAluno"] != null && (bool)ViewData["IsAluno"])
+    {
+        <link rel="stylesheet" href="~/css/aluno.css" asp-append-version="true" />
+    }
+    else if (ViewData["IsProfessor"] != null && (bool)ViewData["IsProfessor"])
+    {
+        <link rel="stylesheet" href="~/css/professor.css" asp-append-version="true" />
+    }
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block bg-primary text-white sidebar fixed-left">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">
+                                <i class="bi bi-shield-lock"></i> Privacidade
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Auth" asp-action="Login">
+                                <i class="bi bi-person-circle"></i> Login Professor
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Alunos" asp-action="LoginAluno">
+                                <i class="bi bi-person-lines-fill"></i> Login Aluno
+                            </a>
+                        </li>
+                        <!-- Aqui você pode adicionar outras opções, como "Cursos" -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Cursos" asp-action="Index">
+                                <i class="bi bi-book"></i> Cursos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main role="main" class="col-md-10 ml-sm-auto px-4">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-2 text-center bg-white text-dark">
+        <div class="container">
+            <p>&copy; 2025 João Gabriel Mendes - Todos os Direitos Reservados</p>
+            <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

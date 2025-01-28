@@ -1,0 +1,55 @@
+﻿<nav class="navbar navbar-expand-sm navbar-light bg-primary fixed-top custom-navbar">
+    <div class="container-fluid">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Professor" asp-action="GerenciarTurmas">Gerenciar Turmas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Professor" asp-action="GerenciarAlunos">Gerenciar Alunos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Professor" asp-action="GerenciarNotas">Gerenciar Notas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Sair</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<style>
+    /* Resetando margem e preenchimento */
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Estilo da Navbar */
+    .custom-navbar {
+        position: fixed;  
+        top: 10px;        
+        left: 270px;     
+        right: 10px;      
+        z-index: 1050;    
+        background-color: #007bff; 
+        border-radius: 10px; 
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+        padding: 0.5rem 1rem; 
+    }
+
+    /* Estilo dos links */
+    .custom-navbar .nav-link {
+        color: white;
+        font-size: 1rem;
+        transition: color 0.3s;
+    }
+
+    .custom-navbar .nav-link:hover {
+        color: #ffcc00; 
+    }
+
+    /* Ajuste para conteúdo principal */
+    main {
+        margin-top: 70px; 
+    }
+</style>

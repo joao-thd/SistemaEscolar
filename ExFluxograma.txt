@@ -1,0 +1,54 @@
+[Início]
+    |
+    v
+[Exibir Tela de Login]
+    |
+    v
+[Usuário Preenche Email e Senha] 
+    |
+    v
+[Enviar Dados de Login]
+    |
+    v
+[Verificar Credenciais]
+    |
+    v
+[Credenciais Válidas?] -- Sim --> [Verificar Tipo de Usuário]
+    |                                      |
+   Não                                     v
+    |                                   [Tipo de Usuário?]
+    |                                      |
+    v                                      |
+[Exibir Mensagem de Erro]                 |
+    |                                      |
+    v                                      |
+[Retornar à Tela de Login]                 |
+    |                                      |
+    v                                      |
+[Redirecionar para Painel] <---------------|
+    |                                      |
+    v                                      |
+[Se Aluno] ------------------------------> [Painel do Aluno]  
+    |                                      |
+    v                                      |
+[Início/Home] ----------------------------> [Opções] 
+    |                                      |
+    v                                      |
+[Ver Notas/Ver Turma e Olhar Faltas]     |
+                                           |
+[Se Professor] --------------------------> [Painel do Professor]  
+    |                                      |
+    v                                      |
+[Início/Home] ----------------------------> [Opções] 
+    |                                      |
+    v                                      |
+[Escolher Turno / Escolher Turma / Escolher Sala] 
+    |                                      |
+    v                                      |
+[Escolher Disciplina / Remover ou Adicionar Aluno] 
+    |                                      |
+    v                                      |
+[Adicionar ou Editar Notas e Alterar Faltas]
+    |
+    v
+[Fim]
