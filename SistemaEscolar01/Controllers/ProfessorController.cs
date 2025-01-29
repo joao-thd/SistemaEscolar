@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaEscolar01.Models;
 using SistemaEscolarV1.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SistemaEscolar01.Controllers
@@ -14,106 +16,47 @@ namespace SistemaEscolar01.Controllers
         }
 
 
-        // Lista de notas simulando um banco de dados
-        private static List<Nota> _notas = new List<Nota>
-        {
-            new Nota { Id = 1, AlunoNome = "João Silva", Valor = 7.5m },
-            new Nota { Id = 2, AlunoNome = "Maria Oliveira", Valor = 8.9m }
-        };
-
-        // Exibe a página de gerenciamento de notas
         public IActionResult GerenciarNotas()
         {
-            
-            return View(_notas);
-        }
+            var turnos = new List<Turno>
+            {
+                new Turno { Nome = "Matutino" },
+                new Turno { Nome = "Vespertino" },
+                new Turno { Nome = "Noturno" }
+            };
+            return View(turnos);
+        } //Exibir Turnos no painel de gerenciar notas
 
-        // Exibe o formulário para adicionar uma nova nota
-        [HttpGet]
-        public IActionResult AdicionarNota()
+        public IActionResult EscolherAno(string turnoescolhido)
         {
+            Console.WriteLine($"Turno Escolhido: {turnoescolhido}");
+
+            // Verifique também se o valor está correto.
+            if (string.IsNullOrEmpty(turnoescolhido))
+            {
+                return RedirectToAction("GerenciarNotas");
+            }
+
+            var anosFundamental = new List<string>
+    {
+        "1º Ano do Fundamental", "2º Ano do Fundamental", "3º Ano do Fundamental",
+        "4º Ano do Fundamental", "5º Ano do Fundamental", "6º Ano do Fundamental",
+        "7º Ano do Fundamental", "8º Ano do Fundamental", "9º Ano do Fundamental"
+    };
+
+            var anosEnsinoMedio = new List<string>
+    {
+        "1º Ano do Ensino Médio", "2º Ano do Ensino Médio", "3º Ano do Ensino Médio"
+    };
+
+            ViewBag.TurnoEscolhido = turnoescolhido;
+            ViewBag.AnosFundamental = anosFundamental;
+            ViewBag.AnosEnsinoMedio = anosEnsinoMedio;
+
             return View();
         }
 
-        // Adiciona uma nova nota
-        [HttpPost]
-        public IActionResult AdicionarNota(int alunoId, decimal nota)
-        {
-            // Valida os dados antes de adicionar
-            if (alunoId <= 0 || nota < 0 || nota > 10)
-            {
-                ModelState.AddModelError("", "Nota inválida.");
-                return View(); // Retorna a mesma view com o erro
-            }
 
-            
-            var alunoNome = "Aluno Exemplo"; 
-
-            var novaNota = new Nota
-            {
-                Id = _notas.Max(n => n.Id) + 1, 
-                AlunoNome = alunoNome,
-                Valor = nota
-            };
-
-           
-            _notas.Add(novaNota);
-
-            // Redireciona para a página de gerenciamento de notas
-            return RedirectToAction("GerenciarNotas");
-        }
-
-        // Exibe a página de edição de nota
-        [HttpGet]
-        public IActionResult Editar(int id)
-        {
-            var nota = _notas.FirstOrDefault(n => n.Id == id);
-            if (nota == null)
-            {
-                return NotFound();  
-            }
-            return View(nota); 
-        }
-
-        // Salva as alterações feitas na nota
-        [HttpPost]
-        public IActionResult Editar(Nota nota)
-        {
-            // Valida os dados antes de salvar
-            if (nota.Valor < 0 || nota.Valor > 10)
-            {
-                ModelState.AddModelError("", "Nota inválida.");
-                return View(nota);  
-            }
-
-            var notaExistente = _notas.FirstOrDefault(n => n.Id == nota.Id);
-            if (notaExistente == null)
-            {
-                return NotFound();
-            }
-
-            // Atualiza a nota
-            notaExistente.Valor = nota.Valor;
-
-            
-            return RedirectToAction("GerenciarNotas");
-        }
-
-        // Exclui uma nota
-        [HttpPost]
-        public IActionResult Excluir(int id)
-        {
-            var nota = _notas.FirstOrDefault(n => n.Id == id);
-            if (nota == null)
-            {
-                return NotFound();
-            }
-
-            
-            _notas.Remove(nota);
-
-            // Redireciona para a página de gerenciamento de notas
-            return RedirectToAction("GerenciarNotas");
-        }
     }
 }
+

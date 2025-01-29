@@ -1,71 +1,82 @@
-﻿@model List<SistemaEscolarV1.Models.Nota>
+﻿@model List<SistemaEscolarV1.Models.Turno>
 
 @{
     ViewData["Title"] = "Gerenciar Notas";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h2 class="text-center">@ViewData["Title"]</h2>
 
-<!-- Tabela de Notas -->
-<div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Aluno</th>
-                <th>Nota</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var nota in Model)
-            {
-                <tr>
-                    <td>@nota.AlunoNome</td>
-                    <td>@nota.Valor</td>
-                    <td>
-                        
-                        <a href="@Url.Action("Editar", "Professor", new { id = nota.Id })" class="btn btn-warning">Editar</a>
-                        <a href="@Url.Action("Excluir", "Professor", new { id = nota.Id })" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta nota?')">Excluir</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-<!-- Formulário para adicionar uma nova nota -->
-<div class="container">
-    <h2>Adicionar Nota</h2>
-    <form method="post" asp-action="AdicionarNota">
-        <div class="form-group">
-            <label for="alunoId">Aluno</label>
-            <select id="alunoId" name="alunoId" class="form-control">
-                
-                <option value="1">João Silva</option>
-                <option value="2">Maria Oliveira</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="nota">Nota</label>
-            <input type="number" id="nota" name="nota" class="form-control" min="0" max="10" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Adicionar</button>
-    </form>
-</div>
-
-
-@if (ViewData["EditarNota"] != null)
-{
-    var notaEditar = (SistemaEscolarV1.Models.Nota)ViewData["EditarNota"];
-    <div class="container">
-        <h2>Editar Nota</h2>
-        <form method="post" asp-action="Editar">
-            <input type="hidden" name="Id" value="@notaEditar.Id" />
-            <div class="form-group">
-                <label for="nota">Nota</label>
-                <input type="number" id="nota" name="nota" class="form-control" value="@notaEditar.Valor" min="0" max="10" required />
+<div class="turnos-container">
+    <h4 class="text-center">Escolha o turno:</h4>
+    <div class="turnos-list">
+        @foreach (var turno in Model)
+        {
+            <div class="turno-item">
+                <!-- Link para escolher o ano, passando o turno -->
+                <a href="@Url.Action("EscolherAno", "Professor", new { turnoescolhido = turno.Nome })" class="btn btn-turno">@turno.Nome</a>
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
-        </form>
+        }
     </div>
-}
+</div>
+
+<style>
+    /* Estiliza a área principal da página */
+    .turnos-container {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Centraliza o título */
+    .text-center {
+        text-align: center;
+    }
+
+    /* Estiliza os itens do container dos turnos */
+    .turnos-list {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Espaço entre os botões */
+        flex-wrap: wrap;
+    }
+
+    /* Estiliza cada item de turno */
+    .turno-item {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    /* Estilização dos botões de turno */
+    .btn-turno {
+        padding: 15px 25px;
+        font-size: 18px;
+        border-radius: 50px; /* Bordas arredondadas */
+        background-color: #007bff; /* Cor azul */
+        color: white;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+        /* Efeito de hover nos botões */
+        .btn-turno:hover {
+            background-color: #0056b3; /* Azul mais escuro no hover */
+            transform: scale(1.05); /* Efeito de aumento suave */
+        }
+
+        /* Efeito de foco no botão */
+        .btn-turno:focus {
+            outline: none; /* Remove a borda padrão do foco */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Adiciona um foco personalizado */
+        }
+
+    /* Estiliza o fundo da página */
+    body {
+        background-color: #e9ecef; /* Fundo suave para a página */
+    }
+
+</style>

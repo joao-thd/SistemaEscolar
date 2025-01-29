@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Escolher Ano Escolar";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div class="anos-container mt-4">
+    <h4 class="text-center text-dark">Você escolheu o turno: <strong>@ViewBag.TurnoEscolhido</strong></h4>
+
+    <div class="mt-5">
+        <h5 class="text-center text-info">Escolha o ano escolar do Ensino Fundamental:</h5>
+        <div class="anos-list d-flex justify-content-center flex-wrap">
+            @foreach (var ano in ViewBag.AnosFundamental)
+            {
+                <div class="ano-item m-3">
+                    <a href="#" class="btn btn-primary btn-lg">@ano</a>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h5 class="text-center text-info">Escolha o ano escolar do Ensino Médio:</h5>
+        <div class="anos-list d-flex justify-content-center flex-wrap">
+            @foreach (var ano in ViewBag.AnosEnsinoMedio)
+            {
+                <div class="ano-item m-3">
+                    <a href="#" class="btn btn-primary btn-lg">@ano</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<style>
+  /* Estiliza o contêiner principal */
+.anos-container {
+    padding: 20px;
+}
+
+/* Listas de anos escolares */
+.anos-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Estilo de cada item de ano */
+.ano-item {
+    margin: 10px;
+}
+
+/* Botões dos anos */
+.btn-ano {
+    background-color: #007bff; /* Cor azul */
+    color: white;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+/* Efeito ao passar o mouse */
+.btn-ano:hover {
+    background-color: #0056b3;
+}
+
+/* Títulos */
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+}
+
+.text-dark {
+    color: #343a40 !important;
+}
+
+/* Estilo dos links dos anos */
+.ano-item a {
+    text-decoration: none;
+}
+
+
+
+</style>
