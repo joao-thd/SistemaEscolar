@@ -1,6 +1,7 @@
 # Sistema Escolar em MVC
 
 Este é um projeto de um sistema escolar desenvolvido com **ASP.NET MVC**, focado em ser funcional e de fácil entendimento para quem está aprendendo a estrutura MVC. O sistema possui um design minimalista com cores azul e amarela.
+Atualmente o projeto está em andamento e não foi concluido ainda
 
 ## 📜 Funcionalidades
 
